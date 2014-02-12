@@ -1,4 +1,5 @@
 require "forwardable"
+require "kyoko/logger"
 
 class Kyoko
   class JobQueue
@@ -6,7 +7,6 @@ class Kyoko
 
     attr_reader :job
 
-    def_delegator :@queue, :deq, :dequeue
     def_delegators :@queue, :clear, :empty?, :size
 
     def initialize(&block)
@@ -18,7 +18,13 @@ class Kyoko
 
     def enqueue(*args)
       @queue.enq(args)
+      Kyoko::Logger.instance.debug("Enqueued: queue has #{@queue.size} job(s)")
     end
     alias :<< :enqueue
+
+    def dequeue
+      @queue.deq
+      Kyoko::Logger.instance.debug("Dequeued: queue has #{@queue.size} job(s)")
+    end
   end
 end
