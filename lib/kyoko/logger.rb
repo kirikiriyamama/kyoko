@@ -13,7 +13,7 @@ class Kyoko
       @logger = ::Logger.new(STDOUT)
       @logger.level = ::Logger::INFO
       @logger.formatter = proc do |severity, datetime, progname, msg|
-        "[#{datetime.strftime('%Y-%m-%d %H:%M:%S')}] #{severity}: #{msg}\n"
+        "[#{datetime.strftime('%Y-%m-%d %H:%M:%S')}] #{severity} - #{msg}\n"
       end
     end
   end

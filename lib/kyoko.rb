@@ -8,7 +8,7 @@ require "kyoko/worker"
 class Kyoko
   def initialize(config)
     job = lambda do |text|
-      Kyoko::Logger.instance.info("Say! - #{text}")
+      Kyoko::Logger.instance.info(text)
 
       command = "say -v kyoko #{Shellwords.escape(text)}"
       status, stdout, stderr = systemu(command)
