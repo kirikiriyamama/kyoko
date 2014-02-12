@@ -16,8 +16,8 @@ class Kyoko
       @thread = Thread.new do
         loop do
           begin
-            args = @job_queue.dequeue
-            @job_queue.job.call(*args)
+            klass, args = @job_queue.dequeue
+            klass.perform(*args)
           rescue => e
             Kyoko::Logger.instance.error(e.inspect)
             Kyoko::Logger.instance.debug(e.backtrace.join("\n"))

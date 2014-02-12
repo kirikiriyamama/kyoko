@@ -1,4 +1,5 @@
 require "twitter"
+require "kyoko/job/say"
 require "kyoko/logger"
 
 class Kyoko
@@ -38,7 +39,7 @@ class Kyoko
 
       def hundle_tweet(tweet)
         text = Kyoko::Twitter::Tweet.new(tweet).strip
-        @job_queue.enqueue(text) unless text.nil?
+        @job_queue.enqueue(Kyoko::Job::Say, text) unless text.nil?
       end
     end
   end
