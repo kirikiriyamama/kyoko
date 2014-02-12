@@ -8,8 +8,8 @@ class Kyoko
     @job_queue = Kyoko::JobQueue.new
     @worker    = Kyoko::Worker.new(@job_queue).start
     @streamer  = Kyoko::Twitter::Streamer.new(
-      oauth:     config["oauth"],
-      filters:   config["filters"],
+      oauth:     config["twitter"]["oauth"],
+      filters:   config["twitter"]["filters"],
       job_queue: @job_queue
     )
   end
