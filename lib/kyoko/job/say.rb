@@ -6,7 +6,7 @@ class Kyoko
   class Job
     class Say < Kyoko::Job
       def self.perform(text)
-        Kyoko::Logger.instance.info("Say! - #{text}")
+        Kyoko::Logger.instance.info(text)
 
         command = "say -v kyoko #{Shellwords.escape(text)}"
         status, stdout, stderr = systemu(command)
