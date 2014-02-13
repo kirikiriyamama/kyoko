@@ -15,14 +15,13 @@ class Kyoko
       # measures when dequeue immediately after enqueue
       Kyoko::Logger.instance.debug("Enqueued: queue has #{@queue.size + 1} job(s)")
       @queue.enq([klass, *args])
+
       self
     end
     alias :<< :enqueue
 
     def dequeue
-      ret = @queue.deq
-      Kyoko::Logger.instance.debug("Dequeued: queue has #{@queue.size} job(s)")
-      ret
+      @queue.deq.tap{ Kyoko::Logger.instance.debug("Dequeued: queue has #{@queue.size} job(s)") }
     end
   end
 end
