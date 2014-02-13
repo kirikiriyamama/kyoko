@@ -16,7 +16,8 @@ class Kyoko
       @logger = ::Logger.new(logdev)
       @logger.level = level
       @logger.formatter = proc do |severity, datetime, progname, msg|
-        "[#{datetime.strftime('%Y-%m-%d %H:%M:%S')}] #{severity} - #{msg}\n"
+        # %w(debug info warn error fatal).map(&:length).max
+        "[#{datetime.strftime('%Y-%m-%d %H:%M:%S')}] #{severity.ljust(5)} - #{msg}\n"
       end
     end
   end
