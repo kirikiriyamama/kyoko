@@ -1,9 +1,11 @@
 $LOAD_PATH.unshift(File.join(__dir__, "lib"))
 
+require "dotenv"
 require "yaml"
 require "kyoko"
 
-CONFIG_PATH = File.join(__dir__, "config.yml")
+Dotenv.load
 
-config = YAML.load_file(CONFIG_PATH)
+path   = File.join(__dir__, "config.yml")
+config = YAML.load_file(path)
 Kyoko.new(config).run
