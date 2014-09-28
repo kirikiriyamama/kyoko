@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-gem "dotenv", "~> 0.11"
-gem "twitter", "~> 5.8"
-gem "systemu", "~> 2.6"
+gem "dotenv"
+gem "twitter"
+gem "systemu"
 
 group :development do
-  gem "pry", "~> 0.9"
+  gem "pry"
 end
