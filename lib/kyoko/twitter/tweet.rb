@@ -4,9 +4,9 @@ class Kyoko
       def initialize(tweet)
         # Twitter::Tweet#text returns frozen text
         @text     = tweet.text.chars.join
-        # exclude html tags
+        # Exclude html tags
         @source   = tweet.source.gsub(/<("[^"]*"|'[^']*'|[^'">])*>/, "")
-        # in case of Twitter::Tweet#entities? is false, if call a method, then warning will be occured
+        # If Twitter::Tweet.entities? returns false, warning will be occurred when the methods are called
         @urls     = tweet.entities? ? tweet.urls     : []
         @hashtags = tweet.entities? ? tweet.hashtags : []
       end
@@ -36,7 +36,7 @@ class Kyoko
         # hashtags
         @hashtags.each { |hashtag| _text.sub!(/[#＃]#{hashtag.text}/, "") }
 
-        # user_mentions
+        # user mentions
         _text.gsub!(/(\.?|(?<![\w&_\/]))@([\w_]{1,15})/, "")
 
         # urls

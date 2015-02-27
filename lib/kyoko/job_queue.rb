@@ -12,7 +12,6 @@ class Kyoko
     end
 
     def enqueue(klass, *args)
-      # measures when dequeue immediately after enqueue
       Kyoko::Logger.instance.debug("Enqueued: queue has #{@queue.size + 1} job(s)")
       @queue.enq([klass, *args])
 
